@@ -1,0 +1,297 @@
+.hero-video-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+
+  // Hide controls when unmute overlay is visible
+  &:has(.mute-overlay[style*="flex"]) {
+    .custom-video-controls {
+      display: none;
+    }
+  }
+
+  // Only show controls on hover or when explicitly visible
+  .custom-video-controls {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &:hover .custom-video-controls,
+  &.controls-visible .custom-video-controls {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  video {
+    width: 100%;
+    display: block;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .custom-video-controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    padding: 20px;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    z-index: 10;
+    touch-action: none;
+
+    @media (max-width: 768px) {
+      padding: 15px;
+    }
+
+    .video-progress {
+      margin-bottom: 10px;
+
+      .progress-bar {
+        width: 100%;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 2px;
+        cursor: pointer;
+        position: relative;
+
+        @media (max-width: 768px) {
+          height: 6px;
+        }
+
+        &:hover {
+          height: 6px;
+        }
+
+        .progress-filled {
+          background: #fff;
+          height: 100%;
+          border-radius: 2px;
+          width: 0;
+          position: relative;
+          transition: width 0.1s linear;
+
+          &::after {
+            content: '';
+            position: absolute;
+            right: -6px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 12px;
+            height: 12px;
+            background: #fff;
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.2s;
+
+            @media (max-width: 768px) {
+              width: 16px;
+              height: 16px;
+              opacity: 1;
+            }
+          }
+        }
+
+        &:hover .progress-filled::after {
+          opacity: 1;
+        }
+      }
+
+      .time-display {
+        display: flex;
+        justify-content: space-between;
+        color: #fff;
+        font-size: 14px;
+        margin-top: 5px;
+        opacity: 0.8;
+
+        @media (max-width: 768px) {
+          font-size: 12px;
+        }
+      }
+    }
+
+    .video-buttons {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+
+      @media (max-width: 768px) {
+        gap: 10px;
+      }
+
+      button {
+        background: none;
+        border: none;
+        padding: 5px;
+        cursor: pointer;
+        color: #fff;
+        opacity: 0.8;
+        transition: opacity 0.2s;
+        min-width: 44px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+          opacity: 1;
+        }
+
+        svg {
+          width: 24px;
+          height: 24px;
+          fill: currentColor;
+
+          @media (max-width: 768px) {
+            width: 28px;
+            height: 28px;
+          }
+        }
+      }
+
+      .play-pause {
+        .pause-icon {
+          display: none;
+        }
+
+        &.playing {
+          .play-icon {
+            display: none;
+          }
+          .pause-icon {
+            display: block;
+          }
+        }
+      }
+
+      .volume-control {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        position: relative;
+        width: 40px;
+        transition: width 0.3s ease;
+
+        @media (max-width: 768px) {
+          &:hover {
+            width: 40px;
+          }
+
+          .volume-slider {
+            display: none;
+          }
+        }
+
+        &:hover {
+          width: 120px;
+        }
+
+        .mute-unmute {
+          flex-shrink: 0;
+        }
+
+        .volume-slider {
+          flex: 1;
+          height: 4px;
+          background: rgba(255, 255, 255, 0.3);
+          border-radius: 2px;
+          position: relative;
+          cursor: pointer;
+          overflow: hidden;
+          min-width: 0;
+          transition: min-width 0.3s ease;
+
+          .volume-level {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            background: #fff;
+            border-radius: 2px;
+            pointer-events: none;
+          }
+
+          &:hover {
+            height: 6px;
+          }
+        }
+
+        &:hover .volume-slider {
+          min-width: 72px;
+        }
+      }
+    }
+  }
+
+  .mute-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 5;
+    transition: opacity 0.3s ease, background-color 0.3s ease;
+    opacity: 1;
+    -webkit-tap-highlight-color: transparent;
+
+    &[style*="flex"] {
+      display: flex !important;
+    }
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .mute-content {
+      text-align: center;
+      color: #fff;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 20px 30px;
+      border-radius: 12px;
+      backdrop-filter: blur(4px);
+      transform: translateY(0);
+      transition: transform 0.3s ease;
+      
+      @media (max-width: 768px) {
+        padding: 15px 25px;
+      }
+
+      .mute-icon {
+        width: 48px;
+        height: 48px;
+        fill: currentColor;
+        margin-bottom: 10px;
+
+        @media (max-width: 768px) {
+          width: 40px;
+          height: 40px;
+        }
+      }
+
+      span {
+        display: block;
+        font-size: 18px;
+        font-weight: 500;
+
+        @media (max-width: 768px) {
+          font-size: 16px;
+        }
+      }
+    }
+
+    &:hover .mute-content {
+      transform: translateY(-5px);
+    }
+  }
+}

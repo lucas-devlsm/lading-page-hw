@@ -1,0 +1,165 @@
+$green-primary: #c1ea51;
+$green-secondary: #877C1B;
+$dark: #1B1B1B;
+$grey-bg: linear-gradient(135deg, #536b11 0%, #198754 70%, #10633c 100%);
+
+.guarantee-section {
+    background: $grey-bg;
+    padding: 5rem 0;
+    overflow: hidden;
+    position: relative;
+
+    // Decorative circles
+    &::before, &::after {
+        content: '';
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        z-index: 0;
+    }
+
+    &::before {
+        width: 300px;
+        height: 300px;
+        top: -100px;
+        left: -100px;
+        animation: float 8s ease-in-out infinite;
+    }
+
+    &::after {
+        width: 400px;
+        height: 400px;
+        bottom: -150px;
+        right: -150px;
+        animation: float 10s ease-in-out infinite reverse;
+    }
+
+    // Additional decorative circles
+    .circle-1, .circle-2, .circle-3 {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.05);
+        z-index: 0;
+    }
+
+    .circle-1 {
+        width: 150px;
+        height: 150px;
+        top: 20%;
+        right: 15%;
+        animation: float 12s ease-in-out infinite;
+    }
+
+    .circle-2 {
+        width: 100px;
+        height: 100px;
+        bottom: 30%;
+        left: 10%;
+        animation: float 7s ease-in-out infinite reverse;
+    }
+
+    .circle-3 {
+        width: 200px;
+        height: 200px;
+        top: 40%;
+        left: 30%;
+        animation: float 15s ease-in-out infinite;
+    }
+
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0) scale(1);
+        }
+        50% {
+            transform: translateY(-20px) scale(1.05);
+        }
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+    }
+
+    .guarantee-content {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 2rem;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        position: relative;
+    }
+
+    .guarantee-seal {
+        width: 180px;
+        height: 180px;
+        margin: -90px auto 20px;
+        display: block;
+
+        @media (max-width: 768px) {
+            width: 150px;
+            height: 150px;
+            margin: -75px auto 15px;
+        }
+    }
+
+    h2 {
+        font-size: 2.5rem;
+        color: $dark;
+        margin-bottom: 0.5rem;
+        font-weight: 800;
+
+        @media (max-width: 768px) {
+            font-size: 1.5rem;
+        }
+    }
+
+    .guarantee-days {
+        font-size: 2rem;
+        color: #198754;
+        font-weight: 700;
+        margin-bottom: 1rem;
+
+        @media (max-width: 768px) {
+            font-size: 1.3rem;
+        }
+    }
+
+    .guarantee-text {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #444;
+        margin-bottom: 2.5rem;
+        text-align: left;
+
+        @media (max-width: 768px) {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+    }
+
+    .certification-seals {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid #eee;
+
+        img {
+            height: 80px;
+            width: auto;
+            transition: transform 0.3s ease;
+
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+    }
+}

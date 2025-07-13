@@ -1,0 +1,136 @@
+$green-primary: #a8cd43;
+$green-secondary: #877C1B;
+$orange: #CE8418;
+$dark: #1B1B1B;
+$grey-bg: #f5f5f7;
+
+.references-section {
+    background: $grey-bg;
+    padding: 4rem 0;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at 30% 70%, 
+            rgba($green-primary, 0.05) 0%,
+            rgba($dark, 0.02) 50%
+        );
+        pointer-events: none;
+    }
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 2.5rem;
+
+        h2 {
+            color: $dark;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            
+            span {
+                color: $green-primary;
+            }
+        }
+
+        p {
+            color: rgba($dark, 0.8);
+            font-size: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+    }
+
+    .references-list {
+        margin: 0 auto;
+        padding: 0 1rem;
+
+        ol {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            column-count: 2;
+            column-gap: 2rem;
+            
+            li {
+                break-inside: avoid;
+                margin-bottom: 1.5rem;
+                counter-increment: reference-counter;
+                
+                .reference-item {
+                    position: relative;
+                    padding-left: 2.5rem;
+                    
+                    &::before {
+                        content: counter(reference-counter) ".";
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        font-weight: 600;
+                        color: $green-primary;
+                        font-size: 1rem;
+                    }
+
+                    h3 {
+                        color: $dark;
+                        font-size: 1rem;
+                        font-weight: 600;
+                        margin-bottom: 0.3rem;
+                        line-height: 1.4;
+                    }
+
+                    .citation {
+                        color: rgba($dark, 0.6);
+                        font-size: 0.9rem;
+                        line-height: 1.4;
+                    }
+                }
+            }
+        }
+    }
+
+    @media (max-width: 991px) {
+        .references-list {
+            ol {
+                column-count: 1;
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        padding: 3rem 0;
+
+        .section-header {
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            p {
+                font-size: 0.95rem;
+                padding: 0 1rem;
+            }
+        }
+
+        .references-list {
+            padding: 0 0.5rem;
+
+            ol li .reference-item {
+                padding-left: 2rem;
+                
+                h3 {
+                    font-size: 0.95rem;
+                }
+
+                .citation {
+                    font-size: 0.85rem;
+                }
+            }
+        }
+    }
+}

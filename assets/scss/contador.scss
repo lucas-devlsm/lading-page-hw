@@ -1,0 +1,156 @@
+$green-primary: #c1ea51;
+$green-secondary: #877C1B;
+$orange: #CE8418;
+$dark: white;
+$grey-bg: #f5f5f7;
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.contador-section-wrapper {
+    width: 100%;
+    overflow: hidden;
+}
+
+.contador-section {
+    background: $dark;
+    padding: 3rem 0;
+    text-align: center;
+    position: relative;
+    width: 100%;
+    transform-origin: center center;
+    animation: pulse 3s ease-in-out infinite;
+
+    .container {
+        position: relative;
+        z-index: 2;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+
+    .countdown-wrapper {
+        width: 100%;
+        margin: 0 auto;
+        padding: 2rem;
+        background: linear-gradient(135deg, #c4b500 0%, #198754 70%, #10633c 100%);
+        backdrop-filter: blur(10px);
+        border-radius: 35px 280px;
+        box-shadow: 0 10px 30px #062e1cc9;
+
+        h2 {
+            color: white;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+
+            span {
+                color: $green-primary;
+            }
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+
+            .time-block {
+                text-align: center;
+
+                .time {
+                    font-size: 4rem;
+                    font-weight: 700;
+                    color: white;
+                    line-height: 1;
+                    padding: 1rem;
+                    min-width: 120px;
+                    background: rgba(black, 0.2);
+                    border-radius: 15px;
+                    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+                    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+                }
+
+                .label {
+                    display: block;
+                    color: rgba(white, 0.8);
+                    font-size: 0.9rem;
+                    margin-top: 0.5rem;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                }
+            }
+
+            .separator {
+                font-size: 4rem;
+                font-weight: 700;
+                color: white;
+                line-height: 1;
+                margin-top: -1rem;
+            }
+        }
+    }
+
+    @media (max-width: 991px) {
+        .countdown-wrapper {
+            max-width: 700px;
+            border-radius: 5px 180px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        padding: 3rem 0;
+
+        .countdown-wrapper {
+            max-width: 100%;
+            padding: 1.5rem;
+            margin: 0 1rem;
+            border-radius: 25px 82px;
+
+            h2 {
+                font-size: 1.3rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+
+            .countdown {
+                gap: 0.5rem;
+
+                .time-block {
+                    .time {
+                        font-size: 2rem;
+                        min-width: 90px;
+                        padding: 0.8rem;
+                    }
+
+                    .label {
+                        font-size: 0.8rem;
+                    }
+                }
+
+                .separator {
+                    font-size: 3rem;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 480px) {
+        .countdown-wrapper {
+            margin: 0;
+            padding: 1.5rem;
+        }
+    }
+}
